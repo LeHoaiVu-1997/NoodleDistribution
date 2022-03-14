@@ -1,7 +1,9 @@
 import React from 'react';
-import {StyleSheet, View, Dimensions} from 'react-native';
+import {StyleSheet, View, Dimensions, Image, Text} from 'react-native';
 import ScreenCore from '../components/screen_core';
-import Video from 'react-native-video';
+import VideoPlayer from 'react-native-video-player';
+import {IMAGE_LOGO, ICON_SCAN} from '../../../resource/images';
+import Frame from '../components/frame';
 
 const windowWidth = Dimensions.get('window').width;
 const windowHeight = Dimensions.get('window').height;
@@ -11,15 +13,37 @@ const ScreenWelcome: React.FC = props => {
 
   const renderChild = () => {
     return (
-      <View>
-        <View style={styles.videoContainer}>
-          <Video
-            source={{
-              uri: 'http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4',
-            }}
-            style={styles.backgroundVideo}
-          />
+      <View style={styles.childContainer}>
+        <View style={styles.videoSection}>
+          <Frame render_content={render_video} />
         </View>
+        <View style={styles.instructionSection}>
+          <Image
+            source={ICON_SCAN}
+            resizeMode="contain"
+            style={styles.imageScanCard}
+          />
+          <Text style={styles.textScanInsctruction}>
+            {'Follow the arrow to scan card'}
+          </Text>
+        </View>
+        <View style={styles.buttonScanSection}></View>
+      </View>
+    );
+  };
+
+  const render_video = () => {
+    return (
+      <View style={styles.videoContainer}>
+        <VideoPlayer
+          video={{
+            uri: 'https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4',
+          }}
+          thumbnail={IMAGE_LOGO}
+          endThumbnail={IMAGE_LOGO}
+          pauseOnPress={true}
+          style={styles.video}
+        />
       </View>
     );
   };
@@ -35,22 +59,42 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
   },
-  videoContainer: {
-    width: windowWidth * 0.9,
-    height: windowHeight * 0.28,
-    borderRadius: 20,
-    backgroundColor: 'white',
-    alignSelf: 'center',
-    shadowColor: 'black',
-    shadowOffset: {width: -5, height: 5},
-    shadowOpacity: 1,
+  childContainer: {
+    flex: 1,
   },
-  backgroundVideo: {
-    position: 'absolute',
-    top: 0,
-    left: 0,
-    bottom: 0,
-    right: 0,
+  videoContainer: {
+    width: '95%',
+    height: '95%',
+    justifyContent: 'center',
+  },
+  video: {
+    borderRadius: 10,
+  },
+  videoSection: {
+    flex: 4,
+    borderColor: 'white',
+    borderWidth: 2,
+  },
+  instructionSection: {
+    flex: 2,
+    flexDirection: 'row',
+    alignSelf: 'center',
+    alignItems: 'center',
+    borderColor: 'white',
+    borderWidth: 2,
+  },
+  buttonScanSection: {
+    flex: 4,
+  },
+  textScanInsctruction: {
+    fontSize: 21,
+    color: 'red',
+    fontWeight: 'bold',
+  },
+  imageScanCard: {
+    width: windowWidth * 0.1,
+    height: windowHeight * 0.1,
+    marginHorizontal: windowWidth * 0.02,
   },
 });
 
