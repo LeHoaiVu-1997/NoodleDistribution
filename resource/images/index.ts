@@ -1,0 +1,16 @@
+export const ICON_PINK_HEART = require('./icon_pink_heart.png');
+export const ICON_SCAN = require('./icon_scan.png');
+export const ICON_WHITE_DOUBLE_ARROW_RIGHT = require('./icon_white_double_arrow_right.png');
+export const ICON_YELLOW_DOUBLE_ARROW_DOWN = require('./icon_yellow_double_arrow_down.png');
+export const IMAGE_BACKGROUND_BUTTON = require('./image_background_button.png');
+export const IMAGE_BACKGROUND_SELECTED_CUP = require('./image_background_selected_cup.png');
+export const IMAGE_BACKGROUND = require('./image_background.png');
+export const IMAGE_CARD_ERROR = require('./image_card_error.png');
+export const IMAGE_CARD_SCAN = require('./image_card_scan.png');
+export const IMAGE_CUP_1 = require('./image_cup_1.png');
+export const IMAGE_CUP_2 = require('./image_cup_2.png');
+export const IMAGE_CUP_3 = require('./image_cup_3.png');
+export const IMAGE_CUP_UNAVAILABLE = require('./image_cup_unavailable.png');
+export const IMAGE_CUPS_FRAME = require('./image_cups_frame.png');
+export const IMAGE_FAVORITE = require('./image_favorite.png');
+export const IMAGE_LOGO = require('./image_logo.png');
