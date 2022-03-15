@@ -2,8 +2,14 @@ import React from 'react';
 import {StyleSheet, View, Dimensions, Image, Text} from 'react-native';
 import ScreenCore from '../components/screen_core';
 import VideoPlayer from 'react-native-video-player';
-import {IMAGE_LOGO, ICON_SCAN} from '../../../resource/images';
+import {
+  IMAGE_LOGO,
+  ICON_SCAN,
+  ICON_WHITE_DOUBLE_ARROW_RIGHT,
+  IMAGE_CARD_SCAN,
+} from '../../../resource/images';
 import Frame from '../components/frame';
+import ImageButton from '../components/image_button';
 
 const windowWidth = Dimensions.get('window').width;
 const windowHeight = Dimensions.get('window').height;
@@ -21,13 +27,29 @@ const ScreenWelcome: React.FC = props => {
           <Image
             source={ICON_SCAN}
             resizeMode="contain"
-            style={styles.imageScanCard}
+            style={styles.imageIconScan}
           />
           <Text style={styles.textScanInsctruction}>
             {'Follow the arrow to scan card'}
           </Text>
         </View>
-        <View style={styles.buttonScanSection}></View>
+        <View style={styles.buttonScanSection}>
+          <View style={styles.viewImageScanCard}>
+            <Image
+              source={IMAGE_CARD_SCAN}
+              resizeMode="contain"
+              style={styles.imageScanCard}
+            />
+          </View>
+          <View style={styles.viewArrowButton}>
+            <ImageButton
+              source={ICON_WHITE_DOUBLE_ARROW_RIGHT}
+              onPress={() => {}}
+              imageStyle={styles.imageArrowButton}
+              buttonStyle={{...styles.buttonArrow, ...styles.imageArrowButton}}
+            />
+          </View>
+        </View>
       </View>
     );
   };
@@ -72,29 +94,49 @@ const styles = StyleSheet.create({
   },
   videoSection: {
     flex: 4,
-    borderColor: 'white',
-    borderWidth: 2,
   },
   instructionSection: {
     flex: 2,
     flexDirection: 'row',
     alignSelf: 'center',
     alignItems: 'center',
-    borderColor: 'white',
-    borderWidth: 2,
   },
   buttonScanSection: {
     flex: 4,
+    flexDirection: 'row',
+  },
+  viewArrowButton: {
+    flex: 3,
+    justifyContent: 'center',
+  },
+  viewImageScanCard: {
+    flex: 7,
+    justifyContent: 'center',
   },
   textScanInsctruction: {
     fontSize: 21,
     color: 'red',
     fontWeight: 'bold',
   },
-  imageScanCard: {
+  imageIconScan: {
     width: windowWidth * 0.1,
     height: windowHeight * 0.1,
     marginHorizontal: windowWidth * 0.02,
+  },
+  buttonArrow: {
+    marginLeft: windowWidth * 0.06,
+    marginBottom: windowHeight * 0.05,
+  },
+  imageArrowButton: {
+    width: windowWidth * 0.15,
+    height: windowHeight * 0.05,
+  },
+  imageScanCard: {
+    width: windowWidth * 0.3,
+    height: windowHeight * 0.3,
+    alignSelf: 'flex-end',
+    marginRight: windowWidth * 0.07,
+    marginBottom: windowHeight * 0.07,
   },
 });
 
