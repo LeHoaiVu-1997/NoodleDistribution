@@ -44,7 +44,7 @@ const ScreenWelcome: React.FC = props => {
           <View style={styles.viewArrowButton}>
             <ImageButton
               source={ICON_WHITE_DOUBLE_ARROW_RIGHT}
-              onPress={() => {}}
+              onPress={() => navigation.navigate('Screen scan card')}
               imageStyle={styles.imageArrowButton}
               buttonStyle={{...styles.buttonArrow, ...styles.imageArrowButton}}
             />
@@ -135,7 +135,7 @@ const styles = StyleSheet.create({
     width: windowWidth * 0.3,
     height: windowHeight * 0.3,
     alignSelf: 'flex-end',
-    marginRight: windowWidth * 0.07,
+    marginRight: windowWidth * 0.06,
     marginBottom: windowHeight * 0.07,
   },
 });
