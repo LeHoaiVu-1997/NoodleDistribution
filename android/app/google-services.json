@@ -1,0 +1,46 @@
+{
+  "project_info": {
+    "project_number": "483778926550",
+    "project_id": "noodledistribution",
+    "storage_bucket": "noodledistribution.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:483778926550:android:e6a56f667b0498364ff677",
+        "android_client_info": {
+          "package_name": "com.noodledistribution"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "483778926550-k68qev0366svvd4rlj79bkb6jbifiq0d.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAU1wNSu6KWizgAx7IULkxnqGBmsK7LP9Q"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "483778926550-k68qev0366svvd4rlj79bkb6jbifiq0d.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "483778926550-12et8841345alel4hvdc4p6q2b9j44n8.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.alta.noodledistribution"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

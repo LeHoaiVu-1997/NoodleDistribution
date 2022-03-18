@@ -5,7 +5,7 @@ import QRCodeScanner from 'react-native-qrcode-scanner';
 const windowWidth = Dimensions.get('window').width;
 const windowHeight = Dimensions.get('window').height;
 
-const ScanCard: React.FC = props => {
+const ScanCard: React.FC = (props: any) => {
   const {navigation} = props;
 
   let scanner;

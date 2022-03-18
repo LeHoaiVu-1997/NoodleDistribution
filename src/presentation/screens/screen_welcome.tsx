@@ -14,7 +14,7 @@ import ImageButton from '../components/image_button';
 const windowWidth = Dimensions.get('window').width;
 const windowHeight = Dimensions.get('window').height;
 
-const ScreenWelcome: React.FC = props => {
+const ScreenWelcome: React.FC = (props: any) => {
   const {navigation} = props;
 
   const renderChild = () => {
