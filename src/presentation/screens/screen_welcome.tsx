@@ -65,6 +65,7 @@ const ScreenWelcome: React.FC = (props: any) => {
           endThumbnail={IMAGE_LOGO}
           pauseOnPress={true}
           style={styles.video}
+          resizeMode="stretch"
         />
       </View>
     );
@@ -86,11 +87,13 @@ const styles = StyleSheet.create({
   },
   videoContainer: {
     width: '95%',
-    height: '95%',
+    height: '90%',
     justifyContent: 'center',
   },
   video: {
     borderRadius: 10,
+    width: '100%',
+    height: '100%',
   },
   videoSection: {
     flex: 4,

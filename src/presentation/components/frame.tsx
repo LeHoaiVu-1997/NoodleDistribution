@@ -16,9 +16,17 @@ const Frame: React.FC<FrameProps> = props => {
   return (
     <View style={styles.container}>
       <View
-        style={background_1_style ? background_1_style : styles.background_1}>
+        style={
+          background_1_style
+            ? [styles.background_1, background_1_style]
+            : styles.background_1
+        }>
         <View
-          style={background_2_style ? background_2_style : styles.background_2}>
+          style={
+            background_2_style
+              ? [styles.background_2, background_2_style]
+              : styles.background_2
+          }>
           {render_content()}
         </View>
       </View>
@@ -29,6 +37,7 @@ const Frame: React.FC<FrameProps> = props => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
+    justifyContent: 'center',
   },
   background_1: {
     width: windowWidth * 0.9,

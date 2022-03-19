@@ -4,6 +4,7 @@ import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import {NavigationContainer} from '@react-navigation/native';
 import ScreenWelcome from '../screens/screen_welcome';
 import ScanCard from '../screens/scan_card';
+import ScreenInformation from '../screens/screen_information';
 
 const Stack = createNativeStackNavigator();
 
@@ -12,6 +13,7 @@ const Navigator: React.FC = () => {
     <Stack.Navigator screenOptions={{headerShown: false}}>
       <Stack.Screen name="Screen welcome" component={ScreenWelcome} />
       <Stack.Screen name="Screen scan card" component={ScanCard} />
+      <Stack.Screen name="Screen information" component={ScreenInformation} />
     </Stack.Navigator>
   );
 };

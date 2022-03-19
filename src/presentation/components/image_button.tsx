@@ -7,7 +7,6 @@ import {
   ImageSourcePropType,
   ImageStyle,
   TouchableOpacity,
-  ImageBackground,
 } from 'react-native';
 
 const windowWidth = Dimensions.get('window').width;

@@ -12,6 +12,7 @@ const ScanCard: React.FC = (props: any) => {
 
   const onSuccess = e => {
     console.log(e.data);
+    navigation.navigate('Screen information');
   };
 
   const reactivateCamera = () => {
