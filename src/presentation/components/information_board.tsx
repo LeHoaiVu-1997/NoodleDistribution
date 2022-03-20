@@ -43,8 +43,21 @@ const InformationBoard: React.FC<InfromationBoardProps> = props => {
     }
   };
 
-  const render_values = (text: string) => {
-    return <Text style={styles.textValues}>{text}</Text>;
+  const render_values = () => {
+    let tempInfor = JSON.parse(JSON.stringify(information));
+    delete tempInfor.avatar_uri;
+    let values = Object.values(tempInfor);
+    return (
+      <View style={styles.viewText}>
+        {values.map(item => {
+          return <Text style={styles.textValues}>{formatTextValue(item)}</Text>;
+        })}
+      </View>
+    );
+  };
+
+  const formatTextValue = (text: string) => {
+    return text.charAt(0).toUpperCase() + text.slice(1);
   };
 
   return (
@@ -56,7 +69,7 @@ const InformationBoard: React.FC<InfromationBoardProps> = props => {
         />
       </View>
       <View style={styles.fieldsContainer}>{render_keys()}</View>
-      <View style={styles.valuesContainer}></View>
+      <View style={styles.valuesContainer}>{render_values()}</View>
     </View>
   );
 };

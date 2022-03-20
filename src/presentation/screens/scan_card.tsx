@@ -1,18 +1,43 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import {StyleSheet, View, Dimensions} from 'react-native';
 import QRCodeScanner from 'react-native-qrcode-scanner';
+import {useDispatch, useSelector} from 'react-redux';
+import {Information} from '../../domain/entities/entities';
+import {getUser} from '../redux/actions';
+import {RootState} from '../redux/store';
 
 const windowWidth = Dimensions.get('window').width;
 const windowHeight = Dimensions.get('window').height;
 
 const ScanCard: React.FC = (props: any) => {
   const {navigation} = props;
+  const dispatch = useDispatch();
+  const user = useSelector((state: RootState) => state.rootSlice.user);
+
+  useEffect(() => {
+    handleGetUserSuccessful(user);
+  }, [user]);
 
   let scanner;
 
+  const handleGetUserSuccessful = (userInformation: Information) => {
+    if (
+      (userInformation.DOB !== '' &&
+        userInformation.avatar_uri !== '' &&
+        userInformation.department !== '',
+      userInformation.full_name !== '',
+      userInformation.gender !== '')
+    ) {
+      navigation.navigate('Screen information');
+    }
+  };
+
   const onSuccess = e => {
-    console.log(e.data);
-    navigation.navigate('Screen information');
+    let data = e.data;
+    data = data.replace(/\s+/g, '');
+    let str = data.split(':');
+    let id = str[1];
+    dispatch(getUser(id));
   };
 
   const reactivateCamera = () => {

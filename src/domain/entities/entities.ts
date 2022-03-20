@@ -5,3 +5,9 @@ export interface Information {
   full_name: string;
   department: string;
 }
+
+export interface GetUserResult {
+  success: boolean;
+  user?: Information;
+  note?: string;
+}
