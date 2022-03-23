@@ -11,3 +11,14 @@ export interface GetUserResult {
   user?: Information;
   note?: string;
 }
+
+export interface NoodleMachineStatus {
+  amount: number;
+  cups_status: boolean[];
+}
+
+export interface GetNoodleMachineStatusResult {
+  success: boolean;
+  data?: NoodleMachineStatus;
+  note?: string;
+}

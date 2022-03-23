@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import {StyleSheet, View, Dimensions, Image, Text} from 'react-native';
 import ScreenCore from '../components/screen_core';
 import VideoPlayer from 'react-native-video-player';
@@ -10,12 +10,20 @@ import {
 } from '../../../resource/images';
 import Frame from '../components/frame';
 import ImageButton from '../components/image_button';
+import {useDispatch} from 'react-redux';
+import {getNoodleMachineStatus} from '../redux/actions';
+import {resetIDError} from '../redux/slice';
 
 const windowWidth = Dimensions.get('window').width;
 const windowHeight = Dimensions.get('window').height;
 
 const ScreenWelcome: React.FC = (props: any) => {
   const {navigation} = props;
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(getNoodleMachineStatus());
+  }, []);
 
   const renderChild = () => {
     return (
@@ -44,7 +52,10 @@ const ScreenWelcome: React.FC = (props: any) => {
           <View style={styles.viewArrowButton}>
             <ImageButton
               source={ICON_WHITE_DOUBLE_ARROW_RIGHT}
-              onPress={() => navigation.navigate('Screen scan card')}
+              onPress={() => {
+                dispatch(resetIDError());
+                navigation.navigate('Screen scan card');
+              }}
               imageStyle={styles.imageArrowButton}
               buttonStyle={{...styles.buttonArrow, ...styles.imageArrowButton}}
             />
@@ -118,7 +129,7 @@ const styles = StyleSheet.create({
   },
   textScanInsctruction: {
     fontSize: 21,
-    color: 'red',
+    color: '#7a0c04',
     fontWeight: 'bold',
   },
   imageIconScan: {
@@ -139,7 +150,7 @@ const styles = StyleSheet.create({
     height: windowHeight * 0.3,
     alignSelf: 'flex-end',
     marginRight: windowWidth * 0.06,
-    marginBottom: windowHeight * 0.07,
+    marginBottom: windowHeight * 0.05,
   },
 });
 

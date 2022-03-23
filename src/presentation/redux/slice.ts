@@ -1,4 +1,8 @@
-import {Information} from './../../domain/entities/entities';
+import {
+  GetNoodleMachineStatusResult,
+  Information,
+  NoodleMachineStatus,
+} from './../../domain/entities/entities';
 import {createSlice, PayloadAction} from '@reduxjs/toolkit';
 
 const INITIAL_STATE = {
@@ -9,7 +13,11 @@ const INITIAL_STATE = {
     full_name: '',
     department: '',
   },
+  user_id_error: false,
   isGettingUser: false,
+  amount: 0,
+  cups_status: [],
+  isGettingMachineStatus: false,
 };
 
 const rootSlice = createSlice({
@@ -25,9 +33,36 @@ const rootSlice = createSlice({
     },
     getUserFailed: state => {
       state.isGettingUser = false;
+      state.user_id_error = true;
+    },
+    resetIDError: state => {
+      state.user_id_error = false;
+    },
+    getNoodleMachineStatusBegin: state => {
+      state.isGettingMachineStatus = true;
+    },
+    getNoodleMachineStatusSuccess: (
+      state,
+      action: PayloadAction<NoodleMachineStatus>,
+    ) => {
+      state.isGettingMachineStatus = false;
+      state.amount = action.payload.amount;
+      state.cups_status = action.payload.cups_status;
+      console.log('payload: ', action.payload);
+    },
+    getNoodleMachineStatusFailed: state => {
+      state.isGettingMachineStatus = false;
     },
   },
 });
 
-export const {getUserBegin, getUserSuccess, getUserFailed} = rootSlice.actions;
+export const {
+  getUserBegin,
+  getUserSuccess,
+  getUserFailed,
+  getNoodleMachineStatusBegin,
+  getNoodleMachineStatusSuccess,
+  getNoodleMachineStatusFailed,
+  resetIDError,
+} = rootSlice.actions;
 export default rootSlice.reducer;

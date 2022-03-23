@@ -13,31 +13,46 @@ const ScanCard: React.FC = (props: any) => {
   const {navigation} = props;
   const dispatch = useDispatch();
   const user = useSelector((state: RootState) => state.rootSlice.user);
+  const id_error = useSelector(
+    (state: RootState) => state.rootSlice.user_id_error,
+  );
 
   useEffect(() => {
-    handleGetUserSuccessful(user);
-  }, [user]);
+    handleGetUserComplete(id_error, user);
+  }, [id_error, user]);
 
   let scanner;
 
-  const handleGetUserSuccessful = (userInformation: Information) => {
-    if (
-      (userInformation.DOB !== '' &&
-        userInformation.avatar_uri !== '' &&
-        userInformation.department !== '',
-      userInformation.full_name !== '',
-      userInformation.gender !== '')
-    ) {
-      navigation.navigate('Screen information');
+  const handleGetUserComplete = (
+    userIdError: boolean,
+    userInformation: Information,
+  ) => {
+    if (userIdError === true) {
+      navigation.replace('Screen card error');
+    } else {
+      if (
+        (userInformation.DOB !== '' &&
+          userInformation.avatar_uri !== '' &&
+          userInformation.department !== '',
+        userInformation.full_name !== '',
+        userInformation.gender !== '')
+      ) {
+        navigation.replace('Screen information');
+      }
     }
   };
 
   const onSuccess = e => {
     let data = e.data;
-    data = data.replace(/\s+/g, '');
-    let str = data.split(':');
-    let id = str[1];
-    dispatch(getUser(id));
+
+    if (data.indexOf('id') < 0) {
+      navigation.replace('Screen card error');
+    } else {
+      data = data.replace(/\s+/g, '');
+      let str = data.split(':');
+      let id = str[1];
+      dispatch(getUser(id));
+    }
   };
 
   const reactivateCamera = () => {

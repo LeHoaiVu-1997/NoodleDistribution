@@ -28,3 +28,13 @@ export const getUser = async (id: string) => {
     };
   }
 };
+
+export const getNoodleMachineStatus = async () => {
+  const doc = await firestore()
+    .collection('cups')
+    .doc('0')
+    .get()
+    .catch(err => console.log('firebase error', err));
+
+  return {success: true, data: doc.data()};
+};

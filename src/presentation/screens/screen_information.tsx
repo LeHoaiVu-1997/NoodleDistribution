@@ -19,6 +19,7 @@ import {
   IMAGE_CUP_3,
   IMAGE_CUP_UNAVAILABLE,
 } from '../../../resource/images';
+import PillShapedButton from '../components/button_pill_shaped';
 
 const windowWidth = Dimensions.get('window').width;
 const windowHeight = Dimensions.get('window').height;
@@ -26,6 +27,10 @@ const windowHeight = Dimensions.get('window').height;
 const ScreenInformation: React.FC = (props: any) => {
   const {navigation} = props;
   const user = useSelector((state: RootState) => state.rootSlice.user);
+  const cups_amount = useSelector((state: RootState) => state.rootSlice.amount);
+  const cups_status = useSelector(
+    (state: RootState) => state.rootSlice.cups_status,
+  );
   const [cup1Selected, setCup1Selected] = useState(false);
   const [cup2Selected, setCup2Selected] = useState(false);
   const [cup3Selected, setCup3Selected] = useState(false);
@@ -39,27 +44,43 @@ const ScreenInformation: React.FC = (props: any) => {
   };
 
   const handleButtonStatus = (
+    isUnavailable: boolean,
     source: ImageSourcePropType,
     state: boolean,
     onPress: () => void,
   ) => {
-    if (state === true) {
-      return (
-        <ButtonCupSelected
-          source={source}
-          onPress={onPress}
-          imageStyle={styles.buttonCups}
-          buttonStyle={styles.buttonCups}
-        />
-      );
+    if (isUnavailable === false) {
+      if (state === true) {
+        return (
+          <ButtonCupSelected
+            source={source}
+            onPress={onPress}
+            imageStyle={styles.buttonCups}
+            buttonStyle={styles.buttonCups}
+          />
+        );
+      } else {
+        return (
+          <ButtonCup
+            source={source}
+            onPress={onPress}
+            imageStyle={styles.buttonCups}
+            buttonStyle={styles.buttonCups}
+          />
+        );
+      }
     } else {
       return (
-        <ButtonCup
-          source={source}
-          onPress={onPress}
-          imageStyle={styles.buttonCups}
-          buttonStyle={styles.buttonCups}
-        />
+        <View>
+          <ButtonCup
+            source={IMAGE_CUP_UNAVAILABLE}
+            onPress={onPress}
+            imageStyle={styles.buttonCups}
+            buttonStyle={styles.buttonCups}
+            disable={true}
+          />
+          <Text style={styles.textCupUnavailable}>{'Unavailable'}</Text>
+        </View>
       );
     }
   };
@@ -68,22 +89,39 @@ const ScreenInformation: React.FC = (props: any) => {
     return (
       <View style={styles.viewButtonCups}>
         <View>
-          {handleButtonStatus(IMAGE_CUP_1, cup1Selected, () =>
+          {handleButtonStatus(cups_status[0], IMAGE_CUP_1, cup1Selected, () =>
             setCup1Selected(!cup1Selected),
           )}
         </View>
         <View>
-          {handleButtonStatus(IMAGE_CUP_2, cup2Selected, () =>
+          {handleButtonStatus(cups_status[1], IMAGE_CUP_2, cup2Selected, () =>
             setCup2Selected(!cup2Selected),
           )}
         </View>
         <View>
-          {handleButtonStatus(IMAGE_CUP_3, cup3Selected, () =>
+          {handleButtonStatus(cups_status[2], IMAGE_CUP_3, cup3Selected, () =>
             setCup3Selected(!cup3Selected),
           )}
         </View>
       </View>
     );
+  };
+
+  const renderPillShapedButton = () => {
+    let cups_available = [];
+    cups_available = cups_status.filter(item => item === false);
+
+    if (cups_amount <= 0 || cups_available.length <= 0) {
+      return (
+        <PillShapedButton
+          text="Come back next month"
+          onPress={() => {}}
+          disable={true}
+        />
+      );
+    } else {
+      return <PillShapedButton text="Get your noodles" onPress={() => {}} />;
+    }
   };
 
   const render_child = () => {
@@ -98,9 +136,18 @@ const ScreenInformation: React.FC = (props: any) => {
         </View>
         <View style={styles.cupsContainer}>
           <View>{render_button_cups()}</View>
-          <Text>{'Nothing here'}</Text>
+          <View style={styles.viewTextLine}>
+            <Text style={styles.textLine}>
+              <Text style={styles.textCupsAmountHightlight}>{cups_amount}</Text>
+              <Text style={styles.textCupsAmount}>
+                {' cups of noodles left this month'}
+              </Text>
+            </Text>
+          </View>
         </View>
-        <View style={styles.buttonContainer}></View>
+        <View style={styles.buttonContainer}>
+          <View style={styles.buttonGetNoodle}>{renderPillShapedButton()}</View>
+        </View>
       </View>
     );
   };
@@ -121,18 +168,12 @@ const styles = StyleSheet.create({
   },
   informationContainer: {
     flex: 2.5,
-    borderWidth: 1,
-    borderColor: 'white',
   },
   cupsContainer: {
     flex: 3.5,
-    borderWidth: 1,
-    borderColor: 'white',
   },
   buttonContainer: {
     flex: 4,
-    borderWidth: 1,
-    borderColor: 'white',
   },
   informationBoard: {
     width: '100%',
@@ -148,15 +189,40 @@ const styles = StyleSheet.create({
   },
   viewButtonCups: {
     flexDirection: 'row',
-    alignItems: 'center',
+    // alignItems: 'center',
     justifyContent: 'space-evenly',
-    borderColor: 'red',
-    borderWidth: 1,
     marginTop: windowHeight * 0.01,
   },
   buttonCups: {
     width: windowWidth * 0.27,
     height: windowHeight * 0.18,
+  },
+  viewTextLine: {
+    marginTop: windowHeight * 0.01,
+  },
+  textLine: {
+    textAlign: 'center',
+  },
+  textCupsAmountHightlight: {
+    fontSize: 16,
+    color: 'red',
+    fontWeight: 'bold',
+  },
+  textCupsAmount: {
+    fontSize: 12,
+    color: 'grey',
+    fontWeight: 'bold',
+  },
+  textCupUnavailable: {
+    fontSize: 18,
+    fontWeight: 'bold',
+    textAlign: 'center',
+    color: 'grey',
+    marginTop: windowHeight * -0.02,
+  },
+  buttonGetNoodle: {
+    alignSelf: 'center',
+    marginTop: windowHeight * 0.02,
   },
 });
 
