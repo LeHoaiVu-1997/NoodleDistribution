@@ -18,10 +18,12 @@ const InformationBoard: React.FC<InfromationBoardProps> = props => {
     let keys = Object.keys(information);
     return (
       <View style={styles.viewText}>
-        {keys.map(item => {
+        {keys.map((item, index) => {
           if (item !== 'avatar_uri')
             return (
-              <Text style={styles.textFields}>{formatTextField(item)}</Text>
+              <Text key={index} style={styles.textFields}>
+                {formatTextField(item)}
+              </Text>
             );
         })}
       </View>
@@ -49,8 +51,12 @@ const InformationBoard: React.FC<InfromationBoardProps> = props => {
     let values = Object.values(tempInfor);
     return (
       <View style={styles.viewText}>
-        {values.map(item => {
-          return <Text style={styles.textValues}>{formatTextValue(item)}</Text>;
+        {values.map((item, index) => {
+          return (
+            <Text key={index} style={styles.textValues}>
+              {formatTextValue(item)}
+            </Text>
+          );
         })}
       </View>
     );

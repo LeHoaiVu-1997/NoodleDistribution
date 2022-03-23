@@ -8,7 +8,7 @@ export const getUser = async (id: string) => {
     .catch(err => console.log('firebase error: ', err));
 
   let user = doc.data();
-  console.log('api result user: ', user);
+  // console.log('api result user: ', user);
 
   if (user !== undefined) {
     return {

@@ -4,23 +4,14 @@ import {
   StyleSheet,
   Dimensions,
   Image,
-  ImageSourcePropType,
-  ImageStyle,
   TouchableOpacity,
 } from 'react-native';
+import {ImageButtonProps} from './image_button';
 
 const windowWidth = Dimensions.get('window').width;
 const windowHeight = Dimensions.get('window').height;
 
-export interface ImageButtonProps {
-  source: ImageSourcePropType;
-  disable?: boolean;
-  imageStyle?: ImageStyle;
-  buttonStyle?: ImageStyle;
-  onPress: () => void;
-}
-
-const ImageButton: React.FC<ImageButtonProps> = props => {
+const ButtonCup: React.FC<ImageButtonProps> = props => {
   const {source, disable, imageStyle, buttonStyle, onPress} = props;
 
   return (
@@ -31,8 +22,8 @@ const ImageButton: React.FC<ImageButtonProps> = props => {
         disabled={disable ? disable : false}>
         <Image
           source={source}
-          resizeMode="contain"
           style={imageStyle ? imageStyle : styles.image}
+          resizeMode="contain"
         />
       </TouchableOpacity>
     </View>
@@ -50,4 +41,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default ImageButton;
+export default ButtonCup;
