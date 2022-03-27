@@ -9,7 +9,7 @@ import {
 import ScreenCore from '../components/screen_core';
 import Frame from '../components/frame';
 import InformationBoard from '../components/information_board';
-import {useSelector} from 'react-redux';
+import {useSelector, useDispatch} from 'react-redux';
 import {RootState} from '../redux/store';
 import ButtonCup from '../components/button_cup';
 import ButtonCupSelected from '../components/button_cup_selected';
@@ -20,12 +20,14 @@ import {
   IMAGE_CUP_UNAVAILABLE,
 } from '../../../resource/images';
 import PillShapedButton from '../components/button_pill_shaped';
+import { setAmount } from '../redux/slice';
 
 const windowWidth = Dimensions.get('window').width;
 const windowHeight = Dimensions.get('window').height;
 
 const ScreenInformation: React.FC = (props: any) => {
   const {navigation} = props;
+  const dispatch = useDispatch();
   const user = useSelector((state: RootState) => state.rootSlice.user);
   const cups_amount = useSelector((state: RootState) => state.rootSlice.amount);
   const cups_status = useSelector(
@@ -115,12 +117,22 @@ const ScreenInformation: React.FC = (props: any) => {
       return (
         <PillShapedButton
           text="Come back next month"
-          onPress={() => {}}
-          disable={true}
+          onPress={() => navigation.navigate('Screen no noodles')}
         />
       );
     } else {
-      return <PillShapedButton text="Get your noodles" onPress={() => {}} />;
+      return (
+        <PillShapedButton text="Get your noodles" onPress={handleGetNoodles} />
+      );
+    }
+  };
+
+  const handleGetNoodles = () => {
+    let arr = [cup1Selected, cup2Selected, cup3Selected];
+    let res = arr.filter(item => item === true);
+    if (res.length > 0) {
+      dispatch(setAmount(cups_amount - res.length));
+      navigation.navigate('Screen done');
     }
   };
 

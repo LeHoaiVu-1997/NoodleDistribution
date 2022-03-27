@@ -53,6 +53,14 @@ const rootSlice = createSlice({
     getNoodleMachineStatusFailed: state => {
       state.isGettingMachineStatus = false;
     },
+    setAmount: (state, action: PayloadAction<number>) => {
+      if (action.payload > 0) {
+        state.amount = action.payload;
+      } else {
+        state.amount = 0;
+      }
+    },
+    reset: () => INITIAL_STATE,
   },
 });
 
@@ -64,5 +72,7 @@ export const {
   getNoodleMachineStatusSuccess,
   getNoodleMachineStatusFailed,
   resetIDError,
+  setAmount,
+  reset,
 } = rootSlice.actions;
 export default rootSlice.reducer;

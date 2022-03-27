@@ -35,7 +35,7 @@ const ScreenCore: React.FC<ScreenCoreProps> = props => {
             style={styles.imageLogo}
           />
           <Text style={titleStyle ? titleStyle : styles.textTitle}>
-            {title}
+            {title.toUpperCase()}
           </Text>
         </View>
         <View style={styles.contentContainer}>{renderChild()}</View>

@@ -6,6 +6,8 @@ import ScreenWelcome from '../screens/screen_welcome';
 import ScanCard from '../screens/scan_card';
 import ScreenInformation from '../screens/screen_information';
 import ScreenCardError from '../screens/screen_card_error';
+import ScreenDone from '../screens/screen_done';
+import ScreenNoNoodles from '../screens/screen_no_noodles';
 
 const Stack = createNativeStackNavigator();
 
@@ -16,6 +18,8 @@ const Navigator: React.FC = () => {
       <Stack.Screen name="Screen scan card" component={ScanCard} />
       <Stack.Screen name="Screen information" component={ScreenInformation} />
       <Stack.Screen name="Screen card error" component={ScreenCardError} />
+      <Stack.Screen name="Screen done" component={ScreenDone} />
+      <Stack.Screen name="Screen no noodles" component={ScreenNoNoodles} />
     </Stack.Navigator>
   );
 };
