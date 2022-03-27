@@ -1,13 +1,7 @@
-import React, {useState} from 'react';
+import React from 'react';
 import {StyleSheet, View, Dimensions, Text, Image} from 'react-native';
 import ScreenCore from '../components/screen_core';
-import PillShapedButton from '../components/button_pill_shaped';
-import {
-  ICON_PINK_HEART,
-  IMAGE_FAVORITE,
-  ICON_YELLOW_DOUBLE_ARROW_DOWN,
-  IMAGE_CUPS_FRAME,
-} from '../../../resource/images';
+import {IMAGE_CUPS_FRAME} from '../../../resource/images';
 
 const windowWidth = Dimensions.get('window').width;
 const windowHeight = Dimensions.get('window').height;

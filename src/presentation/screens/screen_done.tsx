@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React from 'react';
 import {StyleSheet, View, Dimensions, Text, Image} from 'react-native';
 import ScreenCore from '../components/screen_core';
 import PillShapedButton from '../components/button_pill_shaped';

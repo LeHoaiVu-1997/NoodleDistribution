@@ -1,9 +1,7 @@
-import React, {useEffect} from 'react';
+import React from 'react';
 import {StyleSheet, View, Dimensions, Image, Text} from 'react-native';
 import ScreenCore from '../components/screen_core';
-import VideoPlayer from 'react-native-video-player';
 import {
-  IMAGE_LOGO,
   ICON_SCAN,
   ICON_WHITE_DOUBLE_ARROW_RIGHT,
   IMAGE_CARD_SCAN,

@@ -20,7 +20,7 @@ import {
   IMAGE_CUP_UNAVAILABLE,
 } from '../../../resource/images';
 import PillShapedButton from '../components/button_pill_shaped';
-import { setAmount } from '../redux/slice';
+import {setAmount} from '../redux/slice';
 
 const windowWidth = Dimensions.get('window').width;
 const windowHeight = Dimensions.get('window').height;

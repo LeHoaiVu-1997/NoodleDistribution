@@ -1,5 +1,4 @@
 import {
-  GetNoodleMachineStatusResult,
   Information,
   NoodleMachineStatus,
 } from './../../domain/entities/entities';
@@ -48,7 +47,6 @@ const rootSlice = createSlice({
       state.isGettingMachineStatus = false;
       state.amount = action.payload.amount;
       state.cups_status = action.payload.cups_status;
-      console.log('payload: ', action.payload);
     },
     getNoodleMachineStatusFailed: state => {
       state.isGettingMachineStatus = false;
